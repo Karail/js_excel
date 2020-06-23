@@ -6,14 +6,6 @@
         "es2020": true,
         "node": true
     },
-    "extends": [
-        "eslint:recommended",
-        "google"
-    ],
-    "rules": {
-        "linebreak-style": "off",
-        "avoidEscape": true,
-        "allowTemplateLiterals": true,
-        "objectsInObjects": true
-    }
+    "extends": [],
+    "rules": {}
 }
