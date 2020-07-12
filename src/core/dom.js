@@ -7,13 +7,12 @@ class Dom {
     set html(html) {
         if (typeof html === "string") {
             this.$el.innerHTML = html;
-        //     return this;
         }
-        // return this.$el.outerHTML;
     }
     set text(text) {
         this.$el.textContent = text;
     }
+
     get text() {
         if (this.$el.tagName.toLowerCase() === 'input') {
             return this.$el.value.trim();
@@ -67,11 +66,11 @@ class Dom {
     }
     removeClasses(...classes) {
         classes.forEach((className) => {
-            this.$el.classList.remove(className)
+            this.$el.classList.remove(className);
         });
         return this;
     }
-    id (parce) {
+    id(parce) {
         if (parce) {
             const parced = this.id().split(':');
             return {
@@ -84,6 +83,19 @@ class Dom {
     focus() {
         this.$el.focus();
         return this;
+    }
+    getStyles(styles = []) {
+        return styles.reduce((res, s) => {
+            res[s] = this.$el.style[s];
+            return res;
+        }, {});
+    }
+    attr(name, value) {
+        if (value || value === '') {
+            this.$el.setAttribute(name, value);
+            return this;
+        }
+        return this.$el.getAttribute(name);
     }
 }
 export function $(selector) {
