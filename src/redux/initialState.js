@@ -1,5 +1,5 @@
-import { storage } from '@core/utils';
 import { DEFAULT_STYLES_CELL, DEFAULT_TITLE } from '../const';
+import { clone } from '@core/utils';
 
 const defaultState = {
     title: DEFAULT_TITLE,
@@ -9,6 +9,7 @@ const defaultState = {
     currentStyles: DEFAULT_STYLES_CELL,
     dataState: {},
     stylesState: {},
+    openedDate: new Date().toJSON(),
 }
 
 function normalize(state) {
@@ -19,6 +20,8 @@ function normalize(state) {
     }
 }
 
-export const initialState = storage('exel-state')
-    ? normalize(storage('exel-state'))
-    : defaultState;
+export function normalizeInitialState(state) {
+    return state
+    ? normalize(state)
+    : clone(defaultState);
+}

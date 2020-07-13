@@ -5,7 +5,7 @@ export class ExelStateComponent extends ExcelComponent {
         super(...args);
     }
     get template() {
-        return JSON.stringify(this.state, null, 2);
+        throw new Error('getter template returns nothing')
     }
     initState(state = {}) {
         this.state = { ...state };

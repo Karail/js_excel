@@ -19,16 +19,18 @@ class Dom {
         }
         return this.$el.textContent.trim();
     }
-    clear() {
-        this.html('');
-        return this;
-    }
     append(node) {
         if (node instanceof Dom) {
-            node = node.$el;
+            node = node.$el
         }
-        this.$el.append(node);
-        return this;
+
+        if (Element.prototype.append) {
+            this.$el.append(node)
+        } else {
+            this.$el.appendChild(node)
+        }
+
+        return this
     }
     on(eventType, callback) {
         this.$el.addEventListener(eventType, callback);
@@ -96,6 +98,10 @@ class Dom {
             return this;
         }
         return this.$el.getAttribute(name);
+    }
+    clear() {
+        this.html = '';
+        return this;
     }
 }
 export function $(selector) {
